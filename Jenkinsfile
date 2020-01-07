@@ -98,5 +98,22 @@ pipeline {
       }
     }
 
+    stage('Test') {
+      parallel {
+        stage('Workflow Automation Test Execution') {
+          steps {
+            build(job: 'VApps_TestAutomation', quietPeriod: 2)
+          }
+        }
+
+        stage('Performance test - Workflows') {
+          steps {
+            build(job: 'VApps_PerformanceTest', quietPeriod: 3)
+          }
+        }
+
+      }
+    }
+
   }
 }
