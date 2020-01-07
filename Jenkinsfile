@@ -53,7 +53,7 @@ pipeline {
       }
     }
 
-    stage('Upgrade Products') {
+    stage('Deploy') {
       parallel {
         stage('Upgrade-AC4D') {
           steps {
