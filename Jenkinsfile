@@ -24,7 +24,7 @@ pipeline {
       }
     }
 
-    stage('Integrate') {
+    stage('Integration 1') {
       parallel {
         stage('Configure-IQuote-Eflow-Server') {
           steps {
@@ -41,15 +41,37 @@ pipeline {
       }
     }
 
-    stage('Configure-PrintFlowServer') {
-      steps {
-        build(job: 'Configure-PrintFlowServer', quietPeriod: 3)
+    stage('Integration 2') {
+      parallel {
+        stage('Configure-PrintFlowServer') {
+          steps {
+            build(job: 'Configure-PrintFlowServer', quietPeriod: 3)
+          }
+        }
+
+        stage('RDP IQuote Server') {
+          steps {
+            build(job: 'RDP-IQuoteServer', quietPeriod: 3)
+          }
+        }
+
       }
     }
 
-    stage('Configure_AC4D_Server') {
-      steps {
-        build(job: 'Configure_AC4D_Server', quietPeriod: 3)
+    stage('Integration 3') {
+      parallel {
+        stage('Configure_AC4D_Server') {
+          steps {
+            build(job: 'Configure_AC4D_Server', quietPeriod: 3)
+          }
+        }
+
+        stage('RDP Printflow Server') {
+          steps {
+            build(job: 'RDP-PFServer', quietPeriod: 3)
+          }
+        }
+
       }
     }
 
