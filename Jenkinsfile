@@ -80,22 +80,22 @@ pipeline {
       parallel {
         stage('Configure_ AC4D_Server') {
           steps {
-            sleep 120
+            sleep 220
             build(job: 'Configure_AC4D_Server', quietPeriod: 3)
           }
         }
 
         stage('Configure-Print Flow Server') {
           steps {
-            sleep 250
+            sleep 350
             build(job: 'Configure-PrintFlowServer', quietPeriod: 3)
           }
         }
 
         stage('Configure IQuote Eflow Server') {
           steps {
-            build(job: 'Configure-IQuote-Eflow-Server', quietPeriod: 3)
             sleep 120
+            build(job: 'Configure-IQuote-Eflow-Server', quietPeriod: 3)
           }
         }
 
