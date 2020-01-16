@@ -26,15 +26,24 @@ pipeline {
 
     stage('Integration 1') {
       parallel {
-        stage('Configure-IQuote-Eflow-Server') {
+        stage('RestartIQuoteServer') {
           steps {
-            build(job: 'Configure-IQuote-Eflow-Server', quietPeriod: 1)
+            build(job: 'RestartIQuoteServer', quietPeriod: 1)
+            sleep 120
           }
         }
 
-        stage('RDP AC4D Server') {
+        stage('Restart AC4D Server') {
           steps {
-            build(job: 'RDP-AC4DServer', quietPeriod: 3)
+            build(job: 'RestartAC4DServer', quietPeriod: 3)
+            sleep 120
+          }
+        }
+
+        stage('Restart PF Server') {
+          steps {
+            build(job: 'RestartPFServer', quietPeriod: 3)
+            sleep 120
           }
         }
 
@@ -43,15 +52,21 @@ pipeline {
 
     stage('Integration 2') {
       parallel {
-        stage('Configure-PrintFlowServer') {
+        stage('RDP AC4D Server') {
           steps {
-            build(job: 'Configure-PrintFlowServer', quietPeriod: 3)
+            build(job: 'RDP-AC4DServer', quietPeriod: 3)
           }
         }
 
-        stage('RDP IQuote Server') {
+        stage('RDP -IQuote Server') {
           steps {
             build(job: 'RDP-IQuoteServer', quietPeriod: 3)
+          }
+        }
+
+        stage('RDP- PF Server') {
+          steps {
+            build(job: 'RDP-PFServer', quietPeriod: 3)
           }
         }
 
@@ -60,15 +75,24 @@ pipeline {
 
     stage('Integration 3') {
       parallel {
-        stage('Configure_AC4D_Server') {
+        stage('Configure_ AC4D_Server') {
           steps {
+            sleep 120
             build(job: 'Configure_AC4D_Server', quietPeriod: 3)
           }
         }
 
-        stage('RDP Printflow Server') {
+        stage('Configure-Print Flow Server') {
           steps {
-            build(job: 'RDP-PFServer', quietPeriod: 3)
+            sleep 250
+            build(job: 'Configure-PrintFlowServer', quietPeriod: 3)
+          }
+        }
+
+        stage('Configure IQuote Eflow Server') {
+          steps {
+            build(job: 'Configure-IQuote-Eflow-Server', quietPeriod: 3)
+            sleep 120
           }
         }
 
