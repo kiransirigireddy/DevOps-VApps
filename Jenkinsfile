@@ -54,18 +54,21 @@ pipeline {
       parallel {
         stage('RDP AC4D Server') {
           steps {
+            sleep 220
             build(job: 'RDP-AC4DServer', quietPeriod: 3)
           }
         }
 
         stage('RDP -IQuote Server') {
           steps {
+            sleep 400
             build(job: 'RDP-IQuoteServer', quietPeriod: 3)
           }
         }
 
         stage('RDP- PF Server') {
           steps {
+            sleep 540
             build(job: 'RDP-PFServer', quietPeriod: 3)
           }
         }
