@@ -28,22 +28,22 @@ pipeline {
       parallel {
         stage('RestartIQuoteServer') {
           steps {
+            sleep 60
             build(job: 'RestartIQuoteServer', quietPeriod: 1)
-            sleep 120
           }
         }
 
         stage('Restart AC4D Server') {
           steps {
-            build(job: 'RestartAC4DServer', quietPeriod: 3)
             sleep 120
+            build(job: 'RestartAC4DServer', quietPeriod: 3)
           }
         }
 
         stage('Restart PF Server') {
           steps {
+            sleep 220
             build(job: 'RestartPFServer', quietPeriod: 3)
-            sleep 120
           }
         }
 
