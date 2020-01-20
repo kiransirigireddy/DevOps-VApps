@@ -102,40 +102,78 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Restart Servers') {
       parallel {
-        stage('Upgrade-AC4D') {
+        stage('Restart IQuote Server') {
           steps {
-            build(job: 'Upgrade-AC4D', quietPeriod: 3)
+            sleep 60
+            build(job: 'RestartIQuoteServer', quietPeriod: 3)
           }
         }
 
-        stage('Upgrade-IQuote') {
+        stage('Restart AC4D Server') {
           steps {
-            build(job: 'Upgrade-IQuote', quietPeriod: 3)
+            sleep 80
+            build(job: 'RestartAC4DServer', quietPeriod: 3)
           }
         }
 
-        stage('Upgrade-PrintFlow') {
+        stage('Restart PF Server') {
           steps {
-            build(job: 'Upgrade-PrintFlow', quietPeriod: 3)
+            sleep 40
+            build(job: 'RestartPFServer', quietPeriod: 3)
           }
         }
 
       }
     }
 
-    stage('Test') {
+    stage('Connect Servers') {
       parallel {
-        stage('Workflow Automation Test Execution') {
+        stage('RDP AC4D Server') {
           steps {
-            build(job: 'VApps_TestAutomation', quietPeriod: 2)
+            sleep 120
+            build(job: 'RDP-AC4DServer', quietPeriod: 3)
           }
         }
 
-        stage('Performance test - Workflows') {
+        stage('RDP -IQuote Server') {
           steps {
-            build(job: 'VApps_PerformanceTest', quietPeriod: 3)
+            sleep 400
+            build(job: 'RDP-IQuoteServer', quietPeriod: 3)
+          }
+        }
+
+        stage('RDP- PF Server') {
+          steps {
+            sleep 540
+            build(job: 'RDP-PFServer', quietPeriod: 4)
+          }
+        }
+
+      }
+    }
+
+    stage('Deploy') {
+      parallel {
+        stage('Upgrade AC4D') {
+          steps {
+            sleep 500
+            build(job: 'Upgrade-AC4D', quietPeriod: 3)
+          }
+        }
+
+        stage('Upgrade-IQuote') {
+          steps {
+            sleep 500
+            build(job: 'Upgrade-IQuote', quietPeriod: 3)
+          }
+        }
+
+        stage('Upgrade Print Flow') {
+          steps {
+            sleep 540
+            build(job: 'Upgrade-PrintFlow', quietPeriod: 3)
           }
         }
 
