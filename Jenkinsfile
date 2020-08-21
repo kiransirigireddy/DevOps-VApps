@@ -9,7 +9,7 @@ pipeline {
           }
         }
 
-        stage('SPIN a VM from Template') {
+        stage('Spin a VM from Template') {
           steps {
             build(job: 'Download_VM_Template', quietPeriod: 3)
           }
