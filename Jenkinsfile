@@ -24,7 +24,7 @@ pipeline {
       }
     }
 
-    stage('Integration 1') {
+    stage('Build') {
       parallel {
         stage('RestartIQuoteServer') {
           steps {
@@ -50,7 +50,7 @@ pipeline {
       }
     }
 
-    stage('Integration 2') {
+    stage('Deploy') {
       parallel {
         stage('RDP AC4D Server') {
           steps {
@@ -76,7 +76,7 @@ pipeline {
       }
     }
 
-    stage('Integration 3') {
+    stage('Product Integration') {
       parallel {
         stage('Configure_ AC4D_Server') {
           steps {
@@ -102,7 +102,7 @@ pipeline {
       }
     }
 
-    stage('Restart Servers') {
+    stage('Functional Test') {
       parallel {
         stage('Restart IQuote Server') {
           steps {
@@ -128,7 +128,7 @@ pipeline {
       }
     }
 
-    stage('Connect Servers') {
+    stage('Non Functional Test') {
       parallel {
         stage('RDP AC4D Server') {
           steps {
@@ -154,7 +154,7 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy Product') {
       parallel {
         stage('Upgrade AC4D') {
           steps {
