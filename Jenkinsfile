@@ -1,15 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Environment') {
+    stage('Test Bed') {
       parallel {
-        stage('Build Server1') {
+        stage('Download VM Template') {
           steps {
             build(job: 'Download_VM_Template', quietPeriod: 2, wait: true)
           }
         }
 
-        stage('Build IQuote Server') {
+        stage('SPIN a VM from Template') {
           steps {
             build(job: 'Download_VM_Template', quietPeriod: 3)
           }
@@ -18,44 +18,38 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Trigger Build') {
       parallel {
-        stage('RestartIQuoteServer') {
+        stage('Unit Test') {
           steps {
             sleep 3
           }
         }
 
-        stage('Restart AC4D Server') {
+        stage('Code Coverage') {
           steps {
             sleep 3
           }
         }
 
-        stage('Restart PF Server') {
+        stage('Sonar Cube Analysis') {
           steps {
-            sleep 3
+            sleep 2
           }
         }
 
       }
     }
 
-    stage('Deploy') {
+    stage('Upgrade Test Bed') {
       parallel {
-        stage('RDP AC4D Server') {
+        stage('Prepare for Installation') {
           steps {
             sleep 3
           }
         }
 
-        stage('RDP -IQuote Server') {
-          steps {
-            sleep 3
-          }
-        }
-
-        stage('RDP- PF Server') {
+        stage('Upgrade Server') {
           steps {
             sleep 3
           }
@@ -66,19 +60,13 @@ pipeline {
 
     stage('Product Integration') {
       parallel {
-        stage('Configure_ AC4D_Server') {
+        stage('Update the Configurations') {
           steps {
             sleep 3
           }
         }
 
-        stage('Configure-Print Flow Server') {
-          steps {
-            sleep 3
-          }
-        }
-
-        stage('Configure IQuote Eflow Server') {
+        stage('Smoke Test') {
           steps {
             sleep 3
           }
@@ -89,19 +77,13 @@ pipeline {
 
     stage('Functional Test') {
       parallel {
-        stage('Restart IQuote Server') {
+        stage('Smoke Test') {
           steps {
             sleep 3
           }
         }
 
-        stage('Restart AC4D Server') {
-          steps {
-            sleep 3
-          }
-        }
-
-        stage('Restart PF Server') {
+        stage('Regression Test') {
           steps {
             sleep 3
           }
@@ -112,44 +94,50 @@ pipeline {
 
     stage('Non Functional Test') {
       parallel {
-        stage('RDP AC4D Server') {
+        stage('Base Line Performance Test') {
           steps {
             sleep 3
           }
         }
 
-        stage('RDP -IQuote Server') {
+        stage('Stress Test') {
           steps {
             sleep 3
           }
         }
 
-        stage('RDP- PF Server') {
+        stage('Stability Test') {
           steps {
             sleep 3
+          }
+        }
+
+        stage('Security Test') {
+          steps {
+            sleep 2
           }
         }
 
       }
     }
 
-    stage('Publish Product') {
+    stage('Deploy') {
       parallel {
-        stage('Upgrade AC4D') {
+        stage('Publish Product') {
           steps {
             sleep 3
           }
         }
 
-        stage('Upgrade-IQuote') {
+        stage('Deploy to Hosting') {
           steps {
-            sleep 3
+            sleep 2
           }
         }
 
-        stage('Upgrade Print Flow') {
+        stage('Upload To FTP') {
           steps {
-            sleep 3
+            sleep 2
           }
         }
 
