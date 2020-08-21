@@ -89,6 +89,12 @@ pipeline {
           }
         }
 
+        stage('Workflow Test') {
+          steps {
+            sleep 2
+          }
+        }
+
       }
     }
 
