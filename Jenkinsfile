@@ -5,19 +5,13 @@ pipeline {
       parallel {
         stage('Build Server1') {
           steps {
-            build(job: 'Build Server', quietPeriod: 2, wait: true)
+            build(job: 'Download_VM_Template', quietPeriod: 2, wait: true)
           }
         }
 
         stage('Build IQuote Server') {
           steps {
             build(job: 'Build Server2', quietPeriod: 3)
-          }
-        }
-
-        stage('Build Print Flow Server') {
-          steps {
-            build(job: 'Build Server3', quietPeriod: 3)
           }
         }
 
