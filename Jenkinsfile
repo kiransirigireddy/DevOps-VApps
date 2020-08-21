@@ -22,19 +22,19 @@ pipeline {
       parallel {
         stage('RestartIQuoteServer') {
           steps {
-            sleep 60
+            sleep 3
           }
         }
 
         stage('Restart AC4D Server') {
           steps {
-            sleep 120
+            sleep 3
           }
         }
 
         stage('Restart PF Server') {
           steps {
-            sleep 220
+            sleep 3
           }
         }
 
@@ -45,19 +45,19 @@ pipeline {
       parallel {
         stage('RDP AC4D Server') {
           steps {
-            sleep 220
+            sleep 3
           }
         }
 
         stage('RDP -IQuote Server') {
           steps {
-            sleep 400
+            sleep 3
           }
         }
 
         stage('RDP- PF Server') {
           steps {
-            sleep 540
+            sleep 3
           }
         }
 
@@ -68,19 +68,19 @@ pipeline {
       parallel {
         stage('Configure_ AC4D_Server') {
           steps {
-            sleep 220
+            sleep 3
           }
         }
 
         stage('Configure-Print Flow Server') {
           steps {
-            sleep 350
+            sleep 3
           }
         }
 
         stage('Configure IQuote Eflow Server') {
           steps {
-            sleep 120
+            sleep 3
           }
         }
 
@@ -91,19 +91,19 @@ pipeline {
       parallel {
         stage('Restart IQuote Server') {
           steps {
-            sleep 60
+            sleep 3
           }
         }
 
         stage('Restart AC4D Server') {
           steps {
-            sleep 80
+            sleep 3
           }
         }
 
         stage('Restart PF Server') {
           steps {
-            sleep 40
+            sleep 3
           }
         }
 
@@ -114,19 +114,19 @@ pipeline {
       parallel {
         stage('RDP AC4D Server') {
           steps {
-            sleep 120
+            sleep 3
           }
         }
 
         stage('RDP -IQuote Server') {
           steps {
-            sleep 400
+            sleep 3
           }
         }
 
         stage('RDP- PF Server') {
           steps {
-            sleep 540
+            sleep 3
           }
         }
 
@@ -137,19 +137,19 @@ pipeline {
       parallel {
         stage('Upgrade AC4D') {
           steps {
-            sleep 500
+            sleep 3
           }
         }
 
         stage('Upgrade-IQuote') {
           steps {
-            sleep 500
+            sleep 3
           }
         }
 
         stage('Upgrade Print Flow') {
           steps {
-            sleep 540
+            sleep 3
           }
         }
 
