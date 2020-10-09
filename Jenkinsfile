@@ -127,24 +127,36 @@ pipeline {
         stage('Base Line Performance Test') {
           steps {
             sleep 3
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
         stage('Stress Test') {
           steps {
             sleep 3
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
         stage('Stability Test') {
           steps {
             sleep 3
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
         stage('Security Test') {
           steps {
             sleep 2
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
