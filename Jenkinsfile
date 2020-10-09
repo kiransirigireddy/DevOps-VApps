@@ -112,6 +112,9 @@ pipeline {
         stage('Workflow Test') {
           steps {
             sleep 2
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
