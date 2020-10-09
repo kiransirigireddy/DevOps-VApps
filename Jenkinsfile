@@ -37,8 +37,9 @@ pipeline {
             sleep 2
             build(job: 'qqwd', quietPeriod: 2, wait: true)
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh "exit 1"
+              sh 'exit 1'
             }
+
           }
         }
 
