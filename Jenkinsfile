@@ -75,12 +75,6 @@ pipeline {
           }
         }
 
-        stage('Installation Testing') {
-          steps {
-            sleep 3
-          }
-        }
-
       }
     }
 
@@ -115,13 +109,19 @@ pipeline {
           }
         }
 
-        stage('Workflow Test') {
+        stage('Workflow Test/Point2Point') {
           steps {
             sleep 2
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh 'exit 1'
             }
 
+          }
+        }
+
+        stage('Installation Testing') {
+          steps {
+            sleep 3
           }
         }
 
