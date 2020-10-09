@@ -35,6 +35,7 @@ pipeline {
         stage('Sonar Cube Analysis') {
           steps {
             sleep 2
+            build(job: 'qqwd', quietPeriod: 2, wait: true)
           }
         }
 
