@@ -31,7 +31,7 @@ pipeline {
         stage('Unit Test') {
           steps {
             sleep 3
-            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
               sh 'exit 1'
             }
 
