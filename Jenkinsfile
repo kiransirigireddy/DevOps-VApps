@@ -29,9 +29,10 @@ pipeline {
         stage('Code Coverage') {
           steps {
             sleep 3
-             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh 'exit 1'
             }
+
           }
         }
 
