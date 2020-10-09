@@ -75,6 +75,12 @@ pipeline {
           }
         }
 
+        stage('Installation Testing') {
+          steps {
+            sleep 3
+          }
+        }
+
       }
     }
 
