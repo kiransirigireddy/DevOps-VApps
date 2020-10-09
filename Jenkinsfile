@@ -9,15 +9,17 @@ pipeline {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh 'exit 1'
             }
+
           }
         }
 
         stage('Spin a VM from Template') {
           steps {
             build(job: 'Download_VM_Template', quietPeriod: 3)
-             catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
+
           }
         }
 
@@ -29,9 +31,10 @@ pipeline {
         stage('Unit Test') {
           steps {
             sleep 3
-             catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
+
           }
         }
 
