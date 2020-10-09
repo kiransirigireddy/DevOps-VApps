@@ -35,7 +35,7 @@ pipeline {
         stage('Sonar Cube Analysis') {
           steps {
             sleep 2
-            catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+            catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
 
