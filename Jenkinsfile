@@ -31,17 +31,16 @@ pipeline {
         stage('Unit Test') {
           steps {
             sleep 3
-            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
-
-          }
+                     }
         }
 
         stage('Code Coverage') {
           steps {
             sleep 3
-            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
 
@@ -51,7 +50,7 @@ pipeline {
         stage('Sonar Cube Analysis') {
           steps {
             sleep 2
-            catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
 
