@@ -34,7 +34,8 @@ pipeline {
             catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
-                     }
+
+          }
         }
 
         stage('Code Coverage') {
@@ -50,7 +51,7 @@ pipeline {
         stage('Sonar Cube Analysis') {
           steps {
             sleep 2
-          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
               sh 'exit 1'
             }
 
