@@ -78,7 +78,7 @@ pipeline {
       }
     }
 
-    stage('Product Integration') {
+    stage('Product Confuguration') {
       parallel {
         stage('Update the Configurations') {
           steps {
@@ -86,7 +86,7 @@ pipeline {
           }
         }
 
-        stage('Smoke Test') {
+        stage('Sanity Test') {
           steps {
             sleep 3
           }
