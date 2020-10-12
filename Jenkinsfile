@@ -130,6 +130,10 @@ pipeline {
         stage('Installation Testing') {
           steps {
             sleep 3
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
+            
           }
         }
 
@@ -186,18 +190,27 @@ pipeline {
         stage('Publish Product') {
           steps {
             sleep 3
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
         stage('Deploy to Hosting') {
           steps {
             sleep 2
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
-        stage('Upload To FTP') {
+        stage('Upload To SharePoint') {
           steps {
             sleep 2
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
