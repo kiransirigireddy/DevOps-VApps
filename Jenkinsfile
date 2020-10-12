@@ -78,17 +78,23 @@ pipeline {
       }
     }
 
-    stage('Product Confuguration') {
+    stage('Product Configuration') {
       parallel {
         stage('Update the Configurations') {
           steps {
             sleep 3
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
         stage('Sanity Test') {
           steps {
             sleep 3
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh 'exit 1'
+            }
           }
         }
 
