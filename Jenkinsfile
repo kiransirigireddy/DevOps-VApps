@@ -58,6 +58,12 @@ pipeline {
           }
         }
 
+        stage('Build Set.exe') {
+          steps {
+            sleep 3
+          }
+        }
+
       }
     }
 
